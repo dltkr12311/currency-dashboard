@@ -1,69 +1,92 @@
+/**
+ * Currency Converter Component - Pure View Layer
+ */
+
 'use client';
 
-import {
-  calculateConversion,
-  MAJOR_CURRENCIES,
-  type CurrencyCode,
-} from '@/lib/currency-api';
-import { ArrowUpDown } from 'lucide-react';
-import { useEffect, useState } from 'react';
-
-interface CurrencyConverterProps {
-  rates: Record<string, number>;
-  baseCurrency: CurrencyCode;
-}
+import { MAJOR_CURRENCIES, QUICK_AMOUNTS } from '@/constants';
+import { useClipboard, useCurrencyConverter } from '@/hooks';
+import type { CurrencyCode, CurrencyConverterProps } from '@/types';
+import { formatCurrency, getCurrencyKoreanName } from '@/utils';
+import { ArrowUpDown, Calculator, Check, Copy } from 'lucide-react';
 
 export default function CurrencyConverter({
   rates,
   baseCurrency,
 }: CurrencyConverterProps) {
-  const [amount, setAmount] = useState<string>('100');
-  const [fromCurrency, setFromCurrency] = useState<CurrencyCode>('USD');
-  const [toCurrency, setToCurrency] = useState<CurrencyCode>('KRW');
-  const [convertedAmount, setConvertedAmount] = useState<number>(0);
+  const converter = useCurrencyConverter({
+    rates,
+    baseCurrency,
+  });
 
-  useEffect(() => {
-    const numAmount = parseFloat(amount) || 0;
-    if (numAmount > 0 && rates) {
-      const fromRate =
-        fromCurrency === baseCurrency ? 1 : rates[fromCurrency] || 1;
-      const toRate = toCurrency === baseCurrency ? 1 : rates[toCurrency] || 1;
-      const result = calculateConversion(numAmount, fromRate, toRate);
-      setConvertedAmount(result);
-    } else {
-      setConvertedAmount(0);
-    }
-  }, [amount, fromCurrency, toCurrency, rates, baseCurrency]);
+  const { copied, copy } = useClipboard();
 
-  const swapCurrencies = () => {
-    setFromCurrency(toCurrency);
-    setToCurrency(fromCurrency);
+  const handleCopyResult = async () => {
+    const text = `${converter.amount} ${
+      converter.fromCurrency
+    } = ${converter.convertedAmount.toLocaleString('ko-KR')} ${
+      converter.toCurrency
+    }`;
+    await copy(text);
   };
 
   return (
-    <div className='bg-white dark:bg-gray-800 rounded-xl shadow-lg border border-gray-200 dark:border-gray-700 p-6'>
-      <h2 className='text-2xl font-bold text-gray-900 dark:text-white mb-6'>
-        Currency Converter
-      </h2>
-
-      <div className='space-y-4'>
-        {/* From Currency */}
+    <div className='bg-white dark:bg-gray-800 rounded-2xl shadow-lg border border-gray-200 dark:border-gray-700 p-6 w-full'>
+      {/* 헤더 */}
+      <div className='flex items-center space-x-3 mb-6'>
+        <div className='w-10 h-10 bg-blue-600 rounded-xl flex items-center justify-center'>
+          <Calculator className='w-5 h-5 text-white' />
+        </div>
         <div>
-          <label className='block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2'>
-            From
+          <h2 className='text-2xl font-bold text-gray-900 dark:text-white'>
+            환전 계산기
+          </h2>
+          <p className='text-sm text-gray-500 dark:text-gray-400'>
+            실시간 환율로 정확하게 계산해보세요
+          </p>
+        </div>
+      </div>
+
+      <div className='space-y-6'>
+        {/* 보내는 금액 */}
+        <div>
+          <label className='block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-3'>
+            보내는 금액
           </label>
-          <div className='flex space-x-3'>
+
+          {/* 빠른 금액 선택 */}
+          <div className='grid grid-cols-2 sm:flex sm:space-x-2 gap-2 sm:gap-0 mb-3'>
+            {QUICK_AMOUNTS.map(quickAmount => (
+              <button
+                key={quickAmount}
+                onClick={() => converter.setQuickAmount(quickAmount)}
+                className={`px-3 py-2 text-xs sm:text-sm rounded-full border transition-all ${
+                  converter.amount === quickAmount
+                    ? 'bg-blue-500 text-white border-blue-500'
+                    : 'bg-gray-50 dark:bg-gray-700 text-gray-600 dark:text-gray-400 border-gray-200 dark:border-gray-600 hover:border-blue-300'
+                }`}
+              >
+                {parseInt(quickAmount).toLocaleString('ko-KR')}
+              </button>
+            ))}
+          </div>
+
+          <div className='flex flex-col sm:flex-row space-y-3 sm:space-y-0 sm:space-x-3'>
             <input
-              type='number'
-              value={amount}
-              onChange={e => setAmount(e.target.value)}
-              className='flex-1 px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-gray-700 dark:text-white'
-              placeholder='Enter amount'
+              type='text'
+              inputMode='numeric'
+              pattern='[0-9]*'
+              value={converter.amount}
+              onChange={e => converter.setAmount(e.target.value)}
+              className='flex-1 min-w-0 px-4 py-4 text-xl sm:text-2xl font-bold border border-gray-300 dark:border-gray-600 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-gray-700 dark:text-white transition-all appearance-none'
+              placeholder='금액 입력'
             />
             <select
-              value={fromCurrency}
-              onChange={e => setFromCurrency(e.target.value as CurrencyCode)}
-              className='px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-gray-700 dark:text-white'
+              value={converter.fromCurrency}
+              onChange={e =>
+                converter.setFromCurrency(e.target.value as CurrencyCode)
+              }
+              className='px-4 py-4 border border-gray-300 dark:border-gray-600 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-gray-700 dark:text-white w-full sm:min-w-[120px] sm:w-auto'
             >
               {Object.entries(MAJOR_CURRENCIES).map(([code, info]) => (
                 <option key={code} value={code}>
@@ -72,37 +95,48 @@ export default function CurrencyConverter({
               ))}
             </select>
           </div>
+          <p className='text-sm text-gray-500 dark:text-gray-400 mt-2'>
+            {getCurrencyKoreanName(converter.fromCurrency)}
+          </p>
         </div>
 
-        {/* Swap Button */}
+        {/* 교환 버튼 */}
         <div className='flex justify-center'>
           <button
-            onClick={swapCurrencies}
-            className='p-2 rounded-full bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors'
-            aria-label='Swap currencies'
+            onClick={converter.swapCurrencies}
+            className='p-3 rounded-full bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-400 hover:bg-blue-50 hover:text-blue-600 dark:hover:bg-gray-600 dark:hover:text-blue-400 transition-all duration-200 border border-gray-200 dark:border-gray-600'
+            aria-label='통화 교환'
           >
-            <ArrowUpDown className='w-5 h-5 text-gray-600 dark:text-gray-400' />
+            <ArrowUpDown className='w-5 h-5' />
           </button>
         </div>
 
-        {/* To Currency */}
+        {/* 받는 금액 */}
         <div>
-          <label className='block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2'>
-            To
+          <label className='block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-3'>
+            받는 금액
           </label>
-          <div className='flex space-x-3'>
-            <div className='flex-1 px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg bg-gray-50 dark:bg-gray-700'>
-              <span className='text-2xl font-bold text-gray-900 dark:text-white'>
-                {convertedAmount.toLocaleString(undefined, {
-                  minimumFractionDigits: 2,
-                  maximumFractionDigits: 4,
-                })}
-              </span>
+          <div className='flex flex-col sm:flex-row space-y-3 sm:space-y-0 sm:space-x-3'>
+            <div
+              className={`flex-1 px-4 py-4 border-2 border-blue-200 dark:border-blue-800 rounded-xl bg-blue-50 dark:bg-blue-900/10 transition-all duration-300 ${
+                converter.isAnimating
+                  ? 'scale-105 border-blue-300 dark:border-blue-700'
+                  : ''
+              }`}
+            >
+              <div className='text-2xl sm:text-3xl font-bold text-blue-900 dark:text-blue-100 break-all'>
+                {formatCurrency(
+                  converter.convertedAmount,
+                  converter.toCurrency
+                )}
+              </div>
             </div>
             <select
-              value={toCurrency}
-              onChange={e => setToCurrency(e.target.value as CurrencyCode)}
-              className='px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-gray-700 dark:text-white'
+              value={converter.toCurrency}
+              onChange={e =>
+                converter.setToCurrency(e.target.value as CurrencyCode)
+              }
+              className='px-4 py-4 border border-gray-300 dark:border-gray-600 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-gray-700 dark:text-white w-full sm:min-w-[120px] sm:w-auto'
             >
               {Object.entries(MAJOR_CURRENCIES).map(([code, info]) => (
                 <option key={code} value={code}>
@@ -111,18 +145,41 @@ export default function CurrencyConverter({
               ))}
             </select>
           </div>
+          <p className='text-sm text-gray-500 dark:text-gray-400 mt-2'>
+            {getCurrencyKoreanName(converter.toCurrency)}
+          </p>
         </div>
 
-        {/* Exchange Rate Info */}
-        {rates && (
-          <div className='mt-4 p-4 bg-gray-50 dark:bg-gray-700 rounded-lg'>
+        {/* 환율 정보 및 복사 버튼 */}
+        <div className='mt-4 p-4 bg-gray-50 dark:bg-gray-700 rounded-xl flex items-center justify-between'>
+          <div>
             <p className='text-sm text-gray-600 dark:text-gray-400'>
-              1 {fromCurrency} ={' '}
-              {(convertedAmount / parseFloat(amount || '1')).toFixed(4)}{' '}
-              {toCurrency}
+              현재 환율
+            </p>
+            <p className='text-lg font-bold text-gray-900 dark:text-white'>
+              1 {converter.fromCurrency} ={' '}
+              {formatCurrency(converter.rate, converter.toCurrency)}
             </p>
           </div>
-        )}
+          <button
+            onClick={handleCopyResult}
+            className='flex items-center space-x-2 px-4 py-2 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-600 text-sm font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors'
+          >
+            {copied ? (
+              <>
+                <Check className='w-4 h-4 text-green-600' />
+                <span className='text-sm text-green-600'>복사됨!</span>
+              </>
+            ) : (
+              <>
+                <Copy className='w-4 h-4 text-gray-600 dark:text-gray-400' />
+                <span className='text-sm text-gray-600 dark:text-gray-400'>
+                  복사
+                </span>
+              </>
+            )}
+          </button>
+        </div>
       </div>
     </div>
   );

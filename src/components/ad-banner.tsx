@@ -1,13 +1,12 @@
+/**
+ * Ad Banner Component - Pure View Layer
+ */
+
 'use client';
 
+import { ADSENSE_CONFIG } from '@/constants';
+import type { AdBannerProps } from '@/types';
 import { useEffect } from 'react';
-
-interface AdBannerProps {
-  slot: string;
-  format?: 'auto' | 'rectangle' | 'vertical' | 'horizontal';
-  responsive?: boolean;
-  className?: string;
-}
 
 export default function AdBanner({
   slot,
@@ -18,9 +17,11 @@ export default function AdBanner({
   useEffect(() => {
     try {
       // Type assertion for Google AdSense
-      ((window as any).adsbygoogle = (window as any).adsbygoogle || []).push(
-        {}
-      );
+      const windowWithAds = window as typeof window & {
+        adsbygoogle?: unknown[];
+      };
+      windowWithAds.adsbygoogle = windowWithAds.adsbygoogle || [];
+      windowWithAds.adsbygoogle.push({});
     } catch (err) {
       console.error('AdSense error:', err);
     }
@@ -31,7 +32,7 @@ export default function AdBanner({
       <ins
         className='adsbygoogle'
         style={{ display: 'block' }}
-        data-ad-client='ca-pub-YOUR_PUBLISHER_ID' // Replace with your AdSense publisher ID
+        data-ad-client={ADSENSE_CONFIG.PUBLISHER_ID}
         data-ad-slot={slot}
         data-ad-format={format}
         data-full-width-responsive={responsive.toString()}
@@ -48,18 +49,4 @@ export default function AdBanner({
       </div>
     </div>
   );
-}
-
-// CSS to hide fallback when ads load
-const adStyles = `
-  .ad-container ins.adsbygoogle[data-ad-status="filled"] + .ad-fallback {
-    display: none;
-  }
-`;
-
-// Inject styles
-if (typeof document !== 'undefined') {
-  const styleSheet = document.createElement('style');
-  styleSheet.textContent = adStyles;
-  document.head.appendChild(styleSheet);
 }
