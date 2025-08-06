@@ -1,7 +1,7 @@
 import { MetadataRoute } from 'next';
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = 'https://currency-dashboard.vercel.app'; // 배포 후 실제 도메인으로 변경
+  const baseUrl = 'https://currency-dashboard-kappa.vercel.app';
 
   return [
     {
