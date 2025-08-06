@@ -8,19 +8,37 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: '실시간 환율 - 쉽고 빠른 환율 계산기',
+  title: '오늘 달러환율 실시간 | 환전계산기 | USD KRW 엔화 유로환율',
   description:
-    '실시간 달러, 유로, 엔화 환율 정보와 간편한 환전 계산기. 토스처럼 쉽고 빠른 환율 서비스로 해외 송금, 여행 준비를 더 스마트하게.',
+    '지금 달러환율 1,388원! 실시간 USD/KRW, 엔화, 유로환율과 정확한 환전계산기. 해외직구, 여행환전, 송금시 필수! 매시간 업데이트되는 정확한 환율정보',
   keywords:
-    '실시간 환율, 달러 환율, 유로 환율, 엔화 환율, 환율 계산기, 환전 계산기, USD KRW, EUR KRW, JPY KRW, 해외송금, 여행환전',
-  authors: [{ name: '실시간 환율' }],
+    '달러환율, 오늘달러환율, 실시간환율, 달러환율계산기, USD KRW, 엔화환율, 유로환율, 환전계산기, 해외직구환율, 여행환전, 송금환율, JPY KRW, EUR KRW, 파운드환율, 위안환율',
+  authors: [{ name: '실시간 환율 계산기' }],
   openGraph: {
-    title: '실시간 환율 - 쉽고 빠른 환율 계산기',
+    title: '오늘 달러환율 실시간 | 환전계산기 | USD KRW 엔화 유로환율',
     description:
-      '실시간 환율 정보와 간편한 환전 계산기로 해외 송금과 여행 준비를 더 스마트하게',
+      '지금 달러환율 1,388원! 실시간 USD/KRW, 엔화, 유로환율과 정확한 환전계산기. 해외직구, 여행환전시 필수!',
     type: 'website',
+    url: 'https://currency-dashboard-kappa.vercel.app',
+    siteName: '실시간 환율 계산기',
+    images: [
+      {
+        url: 'https://currency-dashboard-kappa.vercel.app/og-image.png',
+        width: 1200,
+        height: 630,
+        alt: '실시간 달러환율 계산기',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: '오늘 달러환율 실시간 | 환전계산기',
+    description: '지금 달러환율 1,388원! 실시간 환율과 정확한 환전계산기',
   },
   robots: 'index, follow',
+  alternates: {
+    canonical: 'https://currency-dashboard-kappa.vercel.app',
+  },
 };
 
 export const viewport = {
