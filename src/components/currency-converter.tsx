@@ -47,7 +47,7 @@ export default function CurrencyConverter({
         </div>
       </div>
 
-      <div className='space-y-6'>
+      <div className='space-y-4'>
         {/* 보내는 금액 */}
         <div>
           <label className='block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-3'>
@@ -78,7 +78,7 @@ export default function CurrencyConverter({
               pattern='[0-9]*'
               value={converter.amount}
               onChange={e => converter.setAmount(e.target.value)}
-              className='flex-1 min-w-0 h-14 px-4 text-xl font-bold border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-gray-700 dark:text-white transition-all appearance-none'
+              className='flex-1 min-w-0 h-12 px-4 text-lg font-bold border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-gray-700 dark:text-white transition-all appearance-none'
               placeholder='금액 입력'
             />
             <select
@@ -86,7 +86,7 @@ export default function CurrencyConverter({
               onChange={e =>
                 converter.setFromCurrency(e.target.value as CurrencyCode)
               }
-              className='h-14 px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-gray-700 dark:text-white text-sm font-medium min-w-[110px] w-[110px]'
+              className='h-12 px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-gray-700 dark:text-white text-sm font-medium min-w-[110px] w-[110px]'
             >
               {Object.entries(MAJOR_CURRENCIES).map(([code, info]) => (
                 <option key={code} value={code}>
@@ -101,13 +101,13 @@ export default function CurrencyConverter({
         </div>
 
         {/* 교환 버튼 */}
-        <div className='flex justify-center'>
+        <div className='flex justify-center -my-2'>
           <button
             onClick={converter.swapCurrencies}
-            className='p-3 rounded-lg bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-400 hover:bg-blue-50 hover:text-blue-600 dark:hover:bg-gray-600 dark:hover:text-blue-400 transition-all duration-200 border border-gray-200 dark:border-gray-600'
+            className='p-2 rounded-lg bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-400 hover:bg-blue-50 hover:text-blue-600 dark:hover:bg-gray-600 dark:hover:text-blue-400 transition-all duration-200 border border-gray-200 dark:border-gray-600'
             aria-label='통화 교환'
           >
-            <ArrowUpDown className='w-5 h-5' />
+            <ArrowUpDown className='w-4 h-4' />
           </button>
         </div>
 
@@ -118,13 +118,13 @@ export default function CurrencyConverter({
           </label>
           <div className='flex items-center space-x-3'>
             <div
-              className={`flex-1 h-14 px-4 py-2 border-2 border-blue-200 dark:border-blue-800 rounded-lg bg-blue-50 dark:bg-blue-900/10 transition-all duration-300 flex items-center ${
+              className={`flex-1 h-12 px-4 py-2 border-2 border-blue-200 dark:border-blue-800 rounded-lg bg-blue-50 dark:bg-blue-900/10 transition-all duration-300 flex items-center ${
                 converter.isAnimating
                   ? 'scale-105 border-blue-300 dark:border-blue-700'
                   : ''
               }`}
             >
-              <div className='text-xl font-bold text-blue-900 dark:text-blue-100 truncate w-full'>
+              <div className='text-lg font-bold text-blue-900 dark:text-blue-100 truncate w-full'>
                 {formatCurrency(
                   converter.convertedAmount,
                   converter.toCurrency
@@ -136,7 +136,7 @@ export default function CurrencyConverter({
               onChange={e =>
                 converter.setToCurrency(e.target.value as CurrencyCode)
               }
-              className='h-14 px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-gray-700 dark:text-white text-sm font-medium min-w-[110px] w-[110px]'
+              className='h-12 px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-gray-700 dark:text-white text-sm font-medium min-w-[110px] w-[110px]'
             >
               {Object.entries(MAJOR_CURRENCIES).map(([code, info]) => (
                 <option key={code} value={code}>
