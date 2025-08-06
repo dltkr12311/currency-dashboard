@@ -186,8 +186,8 @@ export default function HomePage() {
 
           {/* Main Content Grid */}
           <div className='grid grid-cols-1 lg:grid-cols-3 gap-8'>
-            {/* Left Column - Currency Rates */}
-            <div className='lg:col-span-2'>
+            {/* Left Column - Currency Rates (order-2 on mobile, order-1 on desktop) */}
+            <div className='lg:col-span-2 order-2 lg:order-1'>
               <div className='flex items-center space-x-2 mb-6'>
                 <TrendingUp className='w-5 h-5 text-blue-600' />
                 <h2 className='text-2xl font-bold text-gray-900 dark:text-white'>
@@ -211,8 +211,8 @@ export default function HomePage() {
               </Suspense>
             </div>
 
-            {/* Right Column - Converter & Ads */}
-            <div className='space-y-8'>
+            {/* Right Column - Converter & Ads (order-1 on mobile, order-2 on desktop) */}
+            <div className='space-y-8 order-1 lg:order-2'>
               {/* Currency Converter */}
               <div>
                 <div className='flex items-center space-x-2 mb-6'>

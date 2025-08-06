@@ -33,12 +33,12 @@ export default function CurrencyConverter({
   return (
     <div className='bg-white dark:bg-gray-800 rounded-2xl shadow-lg border border-gray-200 dark:border-gray-700 p-6 w-full'>
       {/* 헤더 */}
-      <div className='flex items-center space-x-3 mb-6'>
-        <div className='w-10 h-10 bg-blue-600 rounded-xl flex items-center justify-center'>
+      <div className='flex items-center space-x-3 mb-5'>
+        <div className='w-9 h-9 bg-blue-600 rounded-lg flex items-center justify-center'>
           <Calculator className='w-5 h-5 text-white' />
         </div>
         <div>
-          <h2 className='text-2xl font-bold text-gray-900 dark:text-white'>
+          <h2 className='text-xl font-bold text-gray-900 dark:text-white'>
             환전 계산기
           </h2>
           <p className='text-sm text-gray-500 dark:text-gray-400'>
@@ -55,7 +55,7 @@ export default function CurrencyConverter({
           </label>
 
           {/* 빠른 금액 선택 */}
-          <div className='flex space-x-2 mb-3 overflow-x-auto'>
+          <div className='flex space-x-2 mb-2 overflow-x-auto'>
             {QUICK_AMOUNTS.map(quickAmount => (
               <button
                 key={quickAmount}
@@ -151,7 +151,7 @@ export default function CurrencyConverter({
         </div>
 
         {/* 환율 정보 및 복사 버튼 */}
-        <div className='mt-4 p-4 bg-gray-50 dark:bg-gray-700 rounded-lg flex items-center justify-between'>
+        <div className='mt-3 p-3 bg-gray-50 dark:bg-gray-700 rounded-lg flex items-center justify-between'>
           <div>
             <p className='text-sm text-gray-600 dark:text-gray-400'>
               현재 환율
