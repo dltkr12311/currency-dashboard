@@ -54,6 +54,12 @@ export default function RootLayout({
   return (
     <html lang='en' className='scroll-smooth'>
       <head>
+        {/* Google Search Console Verification */}
+        <meta
+          name='google-site-verification'
+          content='Z9rW-2udFG6XuVvpTAFQuqaINgvzgHOCJKbYs10ws5A'
+        />
+
         {/* Google AdSense */}
         <script
           async
