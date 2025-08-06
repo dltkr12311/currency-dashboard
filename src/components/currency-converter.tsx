@@ -55,12 +55,12 @@ export default function CurrencyConverter({
           </label>
 
           {/* 빠른 금액 선택 */}
-          <div className='grid grid-cols-2 sm:flex sm:space-x-2 gap-2 sm:gap-0 mb-3'>
+          <div className='flex space-x-2 mb-3 overflow-x-auto'>
             {QUICK_AMOUNTS.map(quickAmount => (
               <button
                 key={quickAmount}
-                onClick={() => converter.setQuickAmount(quickAmount)}
-                className={`px-3 py-2 text-xs sm:text-sm rounded-full border transition-all ${
+                onClick={() => converter.setAmount(quickAmount)}
+                className={`px-3 py-1.5 text-sm rounded-lg border transition-all whitespace-nowrap flex-shrink-0 ${
                   converter.amount === quickAmount
                     ? 'bg-blue-500 text-white border-blue-500'
                     : 'bg-gray-50 dark:bg-gray-700 text-gray-600 dark:text-gray-400 border-gray-200 dark:border-gray-600 hover:border-blue-300'
@@ -71,14 +71,14 @@ export default function CurrencyConverter({
             ))}
           </div>
 
-          <div className='flex flex-col sm:flex-row space-y-3 sm:space-y-0 sm:space-x-3'>
+          <div className='flex items-center space-x-3'>
             <input
               type='text'
               inputMode='numeric'
               pattern='[0-9]*'
               value={converter.amount}
               onChange={e => converter.setAmount(e.target.value)}
-              className='flex-1 min-w-0 px-4 py-4 text-xl sm:text-2xl font-bold border border-gray-300 dark:border-gray-600 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-gray-700 dark:text-white transition-all appearance-none'
+              className='flex-1 min-w-0 h-14 px-4 text-xl font-bold border border-gray-300 dark:border-gray-600 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-gray-700 dark:text-white transition-all appearance-none'
               placeholder='금액 입력'
             />
             <select
@@ -86,7 +86,7 @@ export default function CurrencyConverter({
               onChange={e =>
                 converter.setFromCurrency(e.target.value as CurrencyCode)
               }
-              className='px-4 py-4 border border-gray-300 dark:border-gray-600 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-gray-700 dark:text-white w-full sm:min-w-[120px] sm:w-auto'
+              className='h-14 px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-gray-700 dark:text-white text-sm font-medium min-w-[110px] w-[110px]'
             >
               {Object.entries(MAJOR_CURRENCIES).map(([code, info]) => (
                 <option key={code} value={code}>
@@ -116,15 +116,15 @@ export default function CurrencyConverter({
           <label className='block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-3'>
             받는 금액
           </label>
-          <div className='flex flex-col sm:flex-row space-y-3 sm:space-y-0 sm:space-x-3'>
+          <div className='flex items-center space-x-3'>
             <div
-              className={`flex-1 px-4 py-4 border-2 border-blue-200 dark:border-blue-800 rounded-xl bg-blue-50 dark:bg-blue-900/10 transition-all duration-300 ${
+              className={`flex-1 h-14 px-4 py-2 border-2 border-blue-200 dark:border-blue-800 rounded-xl bg-blue-50 dark:bg-blue-900/10 transition-all duration-300 flex items-center ${
                 converter.isAnimating
                   ? 'scale-105 border-blue-300 dark:border-blue-700'
                   : ''
               }`}
             >
-              <div className='text-2xl sm:text-3xl font-bold text-blue-900 dark:text-blue-100 break-all'>
+              <div className='text-xl font-bold text-blue-900 dark:text-blue-100 truncate w-full'>
                 {formatCurrency(
                   converter.convertedAmount,
                   converter.toCurrency
@@ -136,7 +136,7 @@ export default function CurrencyConverter({
               onChange={e =>
                 converter.setToCurrency(e.target.value as CurrencyCode)
               }
-              className='px-4 py-4 border border-gray-300 dark:border-gray-600 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-gray-700 dark:text-white w-full sm:min-w-[120px] sm:w-auto'
+              className='h-14 px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-gray-700 dark:text-white text-sm font-medium min-w-[110px] w-[110px]'
             >
               {Object.entries(MAJOR_CURRENCIES).map(([code, info]) => (
                 <option key={code} value={code}>
