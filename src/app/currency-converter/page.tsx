@@ -6,7 +6,6 @@ import { CurrencyCard } from '@/components/currency-card';
 import { CurrencyConverter } from '@/components/currency-converter';
 import { currencyApi } from '@/services';
 import type { Metadata } from 'next';
-import Link from 'next/link';
 import { Suspense } from 'react';
 
 export const metadata: Metadata = {
@@ -119,17 +118,6 @@ export default function DollarRatePage() {
   return (
     <div className='min-h-screen bg-gray-50 dark:bg-gray-900 py-12'>
       <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8'>
-        {/* 브레드크럼 */}
-        <nav className='mb-8'>
-          <div className='flex items-center space-x-2 text-sm text-gray-500 dark:text-gray-400'>
-            <Link href='/' className='hover:text-blue-600'>
-              홈
-            </Link>
-            <span>/</span>
-            <span className='text-gray-900 dark:text-white'>환율계산기</span>
-          </div>
-        </nav>
-
         {/* 페이지 헤더 */}
         <div className='text-center mb-12'>
           <h1 className='text-4xl md:text-5xl font-extrabold text-gray-900 dark:text-white mb-4'>
