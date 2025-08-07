@@ -18,7 +18,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: '달러환율 오늘 현재 시세 | USD KRW 실시간',
     description: '오늘 달러환율 1,388원! 실시간 USD/KRW 시세와 달러 환전계산기',
-    url: 'https://currency-dashboard-kappa.vercel.app/dollar-rate',
+    url: 'https://datahalo.net/dollar-rate',
   },
 };
 

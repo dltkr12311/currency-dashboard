@@ -8,8 +8,8 @@ export default function StructuredData() {
     '@graph': [
       {
         '@type': 'WebSite',
-        '@id': 'https://currency-dashboard-kappa.vercel.app/#website',
-        url: 'https://currency-dashboard-kappa.vercel.app/',
+        '@id': 'https://datahalo.net/#website',
+        url: 'https://datahalo.net/',
         name: '실시간 환율 계산기',
         description: '실시간 달러, 엔화, 유로환율 정보와 정확한 환전계산기',
         potentialAction: [
@@ -17,8 +17,7 @@ export default function StructuredData() {
             '@type': 'SearchAction',
             target: {
               '@type': 'EntryPoint',
-              urlTemplate:
-                'https://currency-dashboard-kappa.vercel.app/?q={search_term_string}',
+              urlTemplate: 'https://datahalo.net/?q={search_term_string}',
             },
             'query-input': 'required name=search_term_string',
           },
@@ -26,8 +25,8 @@ export default function StructuredData() {
       },
       {
         '@type': 'WebApplication',
-        '@id': 'https://currency-dashboard-kappa.vercel.app/#webapp',
-        url: 'https://currency-dashboard-kappa.vercel.app/',
+        '@id': 'https://datahalo.net/#webapp',
+        url: 'https://datahalo.net/',
         name: '환전 계산기',
         description: '실시간 환율 기반 정확한 환전 계산기',
         applicationCategory: 'FinanceApplication',
@@ -46,7 +45,7 @@ export default function StructuredData() {
       },
       {
         '@type': 'FinancialProduct',
-        '@id': 'https://currency-dashboard-kappa.vercel.app/#service',
+        '@id': 'https://datahalo.net/#service',
         name: '실시간 환율 서비스',
         description: '매시간 업데이트되는 정확한 환율 정보 제공',
         provider: {
@@ -64,12 +63,12 @@ export default function StructuredData() {
       },
       {
         '@type': 'Organization',
-        '@id': 'https://currency-dashboard-kappa.vercel.app/#organization',
+        '@id': 'https://datahalo.net/#organization',
         name: '실시간 환율',
-        url: 'https://currency-dashboard-kappa.vercel.app/',
+        url: 'https://datahalo.net/',
         logo: {
           '@type': 'ImageObject',
-          url: 'https://currency-dashboard-kappa.vercel.app/logo.png',
+          url: 'https://datahalo.net/logo.png',
         },
         sameAs: [],
       },

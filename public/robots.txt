@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://datahalo.net
+
+# Sitemaps
+Sitemap: https://datahalo.net/sitemap.xml

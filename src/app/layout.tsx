@@ -19,11 +19,11 @@ export const metadata: Metadata = {
     description:
       '지금 달러환율 1,388원! 실시간 USD/KRW, 엔화, 유로환율과 정확한 환전계산기. 해외직구, 여행환전시 필수!',
     type: 'website',
-    url: 'https://currency-dashboard-kappa.vercel.app',
+    url: 'https://datahalo.net',
     siteName: '실시간 환율 계산기',
     images: [
       {
-        url: 'https://currency-dashboard-kappa.vercel.app/og-image.png',
+        url: 'https://datahalo.net/og-image.png',
         width: 1200,
         height: 630,
         alt: '실시간 달러환율 계산기',
@@ -37,7 +37,7 @@ export const metadata: Metadata = {
   },
   robots: 'index, follow',
   alternates: {
-    canonical: 'https://currency-dashboard-kappa.vercel.app',
+    canonical: 'https://datahalo.net',
   },
 };
 

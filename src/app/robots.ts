@@ -1,7 +1,7 @@
 import { MetadataRoute } from 'next';
 
 export default function robots(): MetadataRoute.Robots {
-  const baseUrl = 'https://currency-dashboard-kappa.vercel.app';
+  const baseUrl = 'https://datahalo.net';
 
   return {
     rules: {
