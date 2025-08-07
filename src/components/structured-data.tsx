@@ -27,8 +27,8 @@ export function StructuredData() {
         '@type': 'WebApplication',
         '@id': 'https://datahalo.net/#webapp',
         url: 'https://datahalo.net/',
-        name: 'DataHalo 스마트 도구',
-        description: '모든 계산과 변환을 제공하는 올인원 플랫폼',
+        name: 'DataHalo 환율·단위 계산기',
+        description: '실시간 환율계산기와 단위변환기를 제공하는 무료 도구',
         applicationCategory: 'UtilitiesApplication',
         operatingSystem: 'All',
         offers: {
@@ -37,11 +37,12 @@ export function StructuredData() {
           priceCurrency: 'KRW',
         },
         featureList: [
-          '실시간 데이터 처리',
-          '다양한 변환 도구',
-          '원클릭 복사',
-          '모바일 최적화',
-          '무제한 이용',
+          '실시간 환율 계산',
+          'USD KRW EUR JPY 환율변환',
+          '미터 피트 길이변환',
+          '킬로그램 파운드 무게변환',
+          '섭씨 화씨 온도변환',
+          '무료 무제한 이용',
         ],
       },
       {

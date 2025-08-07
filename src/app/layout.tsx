@@ -9,16 +9,16 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: '모든 것을 계산하다 | DataHalo',
+  title: '환율계산기 · 단위변환기 | 실시간 계산 도구 DataHalo',
   description:
-    '복잡한 계산, 간단하게. 필요한 모든 계산을 즉시 해결하는 도구 - DataHalo',
+    '실시간 환율계산기와 단위변환기를 무료로! USD·EUR·JPY 환율변환, 미터·피트·킬로그램·파운드 단위변환까지 모든 계산을 한번에 - DataHalo',
   keywords:
-    '계산기, 변환기, 계산도구, 온라인계산기, 무료계산기, 실시간계산, DataHalo, 간편한계산, 정확한계산',
+    '환율계산기, 단위변환기, 실시간환율, USD KRW, EUR KRW, JPY KRW, 달러환율, 미터피트변환, 킬로그램파운드변환, 무료계산기, DataHalo',
   authors: [{ name: 'DataHalo' }],
   openGraph: {
-    title: '모든 것을 계산하다 | DataHalo',
+    title: '환율계산기 · 단위변환기 | DataHalo',
     description:
-      '복잡한 계산, 간단하게. 필요한 모든 계산을 즉시 해결하는 도구.',
+      '실시간 환율계산기와 단위변환기를 무료로! USD·EUR·JPY 환율변환, 단위변환까지 모든 계산을 한번에',
     type: 'website',
     url: 'https://datahalo.net',
     siteName: 'DataHalo',
@@ -33,8 +33,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: '모든 것을 계산하다 | DataHalo',
-    description: '복잡한 계산, 간단하게. DataHalo와 함께 즉시 해결하세요.',
+    title: '환율계산기 · 단위변환기 | DataHalo',
+    description: '실시간 환율·단위변환을 무료로! USD환율부터 미터피트변환까지',
   },
   robots: 'index, follow',
   alternates: {
