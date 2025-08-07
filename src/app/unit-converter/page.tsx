@@ -24,11 +24,11 @@ export default function UnitConverterPage() {
         <div className='container mx-auto px-4 py-8'>
           {/* Hero Section */}
           <div className='text-center mb-8'>
-            <h1 className='text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4'>
-              <span className='text-blue-600'>단위 변환기</span>
+            <h1 className='text-4xl md:text-5xl font-extrabold text-gray-900 dark:text-white mb-4'>
+              <span className='text-white '>단위 변환기</span>
             </h1>
-            <p className='text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto'>
-              복잡한 단위변환, 간단하게.
+            <p className='text-xl text-gray-600 dark:text-gray-400 max-w-2xl mx-auto'>
+              복잡한 단위변환, 간단하게
               <br />
               필요한 모든 단위를 즉시 변환하는 도구입니다.
             </p>

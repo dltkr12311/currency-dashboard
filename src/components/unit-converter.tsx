@@ -1,6 +1,6 @@
 'use client';
 
-import { UNIT_CATEGORIES, UNIT_QUICK_AMOUNTS } from '@/constants/units';
+import { UNIT_QUICK_AMOUNTS, UNIT_CATEGORIES } from '@/constants/units';
 import { useUnitConverter } from '@/hooks/use-unit-converter';
 import { cn } from '@/lib/utils';
 import { ArrowUpDown, Calculator } from 'lucide-react';

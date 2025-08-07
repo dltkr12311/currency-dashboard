@@ -132,11 +132,11 @@ export default function DollarRatePage() {
 
         {/* 페이지 헤더 */}
         <div className='text-center mb-12'>
-          <h1 className='text-4xl font-bold text-gray-900 dark:text-white mb-4'>
-            <span className='text-blue-600'>환율 계산기</span>
+          <h1 className='text-4xl md:text-5xl font-extrabold text-gray-900 dark:text-white mb-4'>
+            <span className='text-white'>환율 계산기</span>
           </h1>
           <p className='text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto'>
-            복잡한 환율계산, 간단하게.
+            복잡한 환율계산, 간단하게
             <br />
             실시간 환율 정보로 정확한 변환을 즉시 제공합니다.
           </p>
