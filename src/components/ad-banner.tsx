@@ -8,11 +8,12 @@ import { ADSENSE_CONFIG } from '@/constants';
 import type { AdBannerProps } from '@/types';
 import { useEffect } from 'react';
 
-export default function AdBanner({
+export function AdBanner({
   slot,
   format = 'auto',
   responsive = true,
   className = '',
+  style,
 }: AdBannerProps) {
   useEffect(() => {
     try {
@@ -28,7 +29,7 @@ export default function AdBanner({
   }, []);
 
   return (
-    <div className={`ad-container ${className}`}>
+    <div className={`ad-container ${className}`} style={style}>
       <ins
         className='adsbygoogle'
         style={{ display: 'block' }}

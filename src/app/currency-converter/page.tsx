@@ -2,23 +2,23 @@
  * Dollar Rate Detail Page for SEO
  */
 
-import CurrencyCard from '@/components/currency-card';
-import CurrencyConverter from '@/components/currency-converter';
+import { CurrencyCard } from '@/components/currency-card';
+import { CurrencyConverter } from '@/components/currency-converter';
 import { currencyApi } from '@/services';
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { Suspense } from 'react';
 
 export const metadata: Metadata = {
-  title: '달러환율 오늘 현재 시세 | USD KRW 실시간 환율 | 달러 환전계산기',
+  title: '환율계산기 | 실시간 USD EUR JPY CNY 환율 변환',
   description:
-    '오늘 달러환율 1,388원! USD/KRW 실시간 시세와 정확한 달러 환전계산기. 해외직구, 여행환전, 송금시 필수 달러환율 정보를 매시간 업데이트로 제공',
+    '실시간 환율계산기로 USD, EUR, JPY, CNY 등 주요 통화를 KRW로 정확하게 변환하세요. 매시간 업데이트되는 환율 정보로 해외직구, 여행, 송금에 필수!',
   keywords:
-    '달러환율, 오늘달러환율, USD KRW, 달러환전계산기, 실시간달러환율, 달러시세, 미국달러환율, 달러원환율',
+    '환율계산기, 실시간환율, USD KRW, EUR KRW, JPY KRW, CNY KRW, 환전계산기, 달러환율, 유로환율, 엔화환율, 위안환율',
   openGraph: {
-    title: '달러환율 오늘 현재 시세 | USD KRW 실시간',
-    description: '오늘 달러환율 1,388원! 실시간 USD/KRW 시세와 달러 환전계산기',
-    url: 'https://datahalo.net/dollar-rate',
+    title: '환율계산기 | 실시간 USD EUR JPY CNY 환율 변환',
+    description: '실시간 환율계산기로 모든 주요 통화를 정확하게 변환하세요!',
+    url: 'https://datahalo.net/currency-converter',
   },
 };
 

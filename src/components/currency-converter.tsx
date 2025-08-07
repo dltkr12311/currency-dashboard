@@ -10,7 +10,7 @@ import type { CurrencyCode, CurrencyConverterProps } from '@/types';
 import { formatCurrency, getCurrencyKoreanName } from '@/utils';
 import { ArrowUpDown, Calculator, Check, Copy } from 'lucide-react';
 
-export default function CurrencyConverter({
+export function CurrencyConverter({
   rates,
   baseCurrency,
 }: CurrencyConverterProps) {

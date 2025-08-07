@@ -2,7 +2,7 @@
  * Structured Data for SEO
  */
 
-export default function StructuredData() {
+export function StructuredData() {
   const structuredData = {
     '@context': 'https://schema.org',
     '@graph': [
@@ -10,8 +10,8 @@ export default function StructuredData() {
         '@type': 'WebSite',
         '@id': 'https://datahalo.net/#website',
         url: 'https://datahalo.net/',
-        name: '실시간 환율 계산기',
-        description: '실시간 달러, 엔화, 유로환율 정보와 정확한 환전계산기',
+        name: 'DataHalo 스마트 플랫폼',
+        description: '모든 계산과 변환을 제공하는 종합 도구 플랫폼',
         potentialAction: [
           {
             '@type': 'SearchAction',
@@ -27,9 +27,9 @@ export default function StructuredData() {
         '@type': 'WebApplication',
         '@id': 'https://datahalo.net/#webapp',
         url: 'https://datahalo.net/',
-        name: '환전 계산기',
-        description: '실시간 환율 기반 정확한 환전 계산기',
-        applicationCategory: 'FinanceApplication',
+        name: 'DataHalo 스마트 도구',
+        description: '모든 계산과 변환을 제공하는 올인원 플랫폼',
+        applicationCategory: 'UtilitiesApplication',
         operatingSystem: 'All',
         offers: {
           '@type': 'Offer',
@@ -37,34 +37,35 @@ export default function StructuredData() {
           priceCurrency: 'KRW',
         },
         featureList: [
-          '실시간 환율 정보',
-          '환전 계산기',
-          '복사 기능',
+          '실시간 데이터 처리',
+          '다양한 변환 도구',
+          '원클릭 복사',
           '모바일 최적화',
+          '무제한 이용',
         ],
       },
       {
-        '@type': 'FinancialProduct',
+        '@type': 'SoftwareApplication',
         '@id': 'https://datahalo.net/#service',
-        name: '실시간 환율 서비스',
-        description: '매시간 업데이트되는 정확한 환율 정보 제공',
+        name: 'DataHalo 도구 서비스',
+        description: '모든 계산과 변환을 제공하는 종합 도구 플랫폼',
         provider: {
           '@type': 'Organization',
-          name: '실시간 환율',
+          name: 'DataHalo',
         },
-        category: '환율 정보',
+        category: '계산 및 변환 도구',
         featureList: [
-          'USD/KRW 달러환율',
-          'EUR/KRW 유로환율',
-          'JPY/KRW 엔화환율',
-          'GBP/KRW 파운드환율',
-          'CNY/KRW 위안환율',
+          '실시간 데이터 계산',
+          '다양한 변환 기능',
+          '편리한 인터페이스',
+          '정확한 결과',
+          '빠른 처리 속도',
         ],
       },
       {
         '@type': 'Organization',
         '@id': 'https://datahalo.net/#organization',
-        name: '실시간 환율',
+        name: 'DataHalo',
         url: 'https://datahalo.net/',
         logo: {
           '@type': 'ImageObject',

@@ -2,13 +2,21 @@
  * Main Page - Orchestrates components and data flow
  */
 
-import AdBanner from '@/components/ad-banner';
-import CurrencyCard from '@/components/currency-card';
-import CurrencyConverter from '@/components/currency-converter';
-import StructuredData from '@/components/structured-data';
+import { AdBanner } from '@/components/ad-banner';
+import { CurrencyCard } from '@/components/currency-card';
+import { StructuredData } from '@/components/structured-data';
 import { ADSENSE_CONFIG, POPULAR_CURRENCY_PAIRS } from '@/constants';
 import { currencyApi } from '@/services';
-import { Calculator, Heart, Star, TrendingUp, Zap } from 'lucide-react';
+import {
+  ArrowRight,
+  Calculator,
+  DollarSign,
+  Heart,
+  Star,
+  TrendingUp,
+  Zap,
+} from 'lucide-react';
+import Link from 'next/link';
 import { Suspense } from 'react';
 
 // Loading components
@@ -28,18 +36,6 @@ function CurrencyCardSkeleton() {
       <div className='mb-4'>
         <div className='h-8 bg-gray-300 dark:bg-gray-600 rounded w-24 mb-1'></div>
         <div className='h-4 bg-gray-300 dark:bg-gray-600 rounded w-36'></div>
-      </div>
-    </div>
-  );
-}
-
-function ConverterSkeleton() {
-  return (
-    <div className='bg-white dark:bg-gray-800 rounded-xl shadow-lg border border-gray-200 dark:border-gray-700 p-6 animate-pulse'>
-      <div className='h-6 bg-gray-300 dark:bg-gray-600 rounded w-32 mb-6'></div>
-      <div className='space-y-4'>
-        <div className='h-12 bg-gray-300 dark:bg-gray-600 rounded'></div>
-        <div className='h-12 bg-gray-300 dark:bg-gray-600 rounded'></div>
       </div>
     </div>
   );
@@ -79,27 +75,56 @@ async function CurrencyRatesGrid() {
   );
 }
 
-async function CurrencyConverterSection() {
-  const exchangeData = await currencyApi.fetchExchangeRates('USD');
-
-  if (!exchangeData) {
-    return (
-      <div className='bg-white dark:bg-gray-800 rounded-xl shadow-lg border border-gray-200 dark:border-gray-700 p-6'>
-        <h2 className='text-2xl font-bold text-gray-900 dark:text-white mb-6'>
-          환전 계산기
-        </h2>
-        <p className='text-red-600 dark:text-red-400'>
-          계산기를 불러올 수 없습니다. 잠시 후 다시 시도해주세요.
-        </p>
-      </div>
-    );
-  }
-
+// Calculator Links Section
+function CalculatorSection() {
   return (
-    <CurrencyConverter
-      rates={exchangeData.conversion_rates}
-      baseCurrency='USD'
-    />
+    <div className='space-y-3'>
+      {/* Currency Converter */}
+      <Link
+        href='/currency-converter'
+        className='group block bg-white dark:bg-gray-800/50 rounded-2xl border border-gray-100 dark:border-gray-700/50 p-5 hover:bg-gray-50 dark:hover:bg-gray-700/30 transition-all duration-200 hover:scale-[1.02] hover:shadow-sm'
+      >
+        <div className='flex items-center gap-4'>
+          <div className='w-10 h-10 bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl flex items-center justify-center shadow-sm'>
+            <DollarSign className='w-5 h-5 text-white' />
+          </div>
+          <div className='flex-1'>
+            <div className='flex items-center justify-between'>
+              <h3 className='text-base font-semibold text-gray-900 dark:text-white'>
+                환율계산기
+              </h3>
+              <ArrowRight className='w-4 h-4 text-gray-400 group-hover:text-blue-500 group-hover:translate-x-0.5 transition-all' />
+            </div>
+            <p className='text-sm text-gray-500 dark:text-gray-400 mt-0.5'>
+              실시간 환율 변환
+            </p>
+          </div>
+        </div>
+      </Link>
+
+      {/* Unit Converter */}
+      <Link
+        href='/unit-converter'
+        className='group block bg-white dark:bg-gray-800/50 rounded-2xl border border-gray-100 dark:border-gray-700/50 p-5 hover:bg-gray-50 dark:hover:bg-gray-700/30 transition-all duration-200 hover:scale-[1.02] hover:shadow-sm'
+      >
+        <div className='flex items-center gap-4'>
+          <div className='w-10 h-10 bg-gradient-to-br from-purple-500 to-purple-600 rounded-xl flex items-center justify-center shadow-sm'>
+            <Calculator className='w-5 h-5 text-white' />
+          </div>
+          <div className='flex-1'>
+            <div className='flex items-center justify-between'>
+              <h3 className='text-base font-semibold text-gray-900 dark:text-white'>
+                단위변환기
+              </h3>
+              <ArrowRight className='w-4 h-4 text-gray-400 group-hover:text-purple-500 group-hover:translate-x-0.5 transition-all' />
+            </div>
+            <p className='text-sm text-gray-500 dark:text-gray-400 mt-0.5'>
+              길이, 무게, 온도 등 변환
+            </p>
+          </div>
+        </div>
+      </Link>
+    </div>
   );
 }
 
@@ -156,30 +181,29 @@ export default function HomePage() {
           {/* Hero Section - SEO 최적화 */}
           <div className='text-center mb-16'>
             <h1 className='text-4xl sm:text-5xl font-bold text-gray-900 dark:text-white mb-6'>
-              오늘 <span className='text-blue-600'>달러환율</span> 실시간
-              <br className='sm:hidden' /> 정확한 환전계산기
+              모든 것을 <span className='text-blue-600'>계산하다</span>
+              <br className='sm:hidden' /> DataHalo
             </h1>
             <p className='text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto mb-8'>
-              <strong>지금 달러환율 1,388원!</strong> 해외직구, 여행환전, 송금시
-              필수인
+              복잡한 계산, 간단하게.
               <br />
               <span className='text-blue-600 font-semibold'>
-                실시간 USD/KRW, 엔화, 유로환율
+                필요한 모든 계산을 즉시
               </span>
-              과 정확한 환전계산기
+              해결하는 도구입니다.
             </p>
             <div className='flex flex-wrap justify-center gap-4 text-sm text-gray-500 dark:text-gray-400'>
               <div className='flex items-center space-x-1'>
                 <div className='w-2 h-2 bg-green-500 rounded-full'></div>
-                <span>실시간 업데이트</span>
+                <span>실시간</span>
               </div>
               <div className='flex items-center space-x-1'>
                 <div className='w-2 h-2 bg-blue-500 rounded-full'></div>
-                <span>한국인 맞춤</span>
+                <span>심플</span>
               </div>
               <div className='flex items-center space-x-1'>
                 <div className='w-2 h-2 bg-purple-500 rounded-full'></div>
-                <span>완전 무료</span>
+                <span>무료</span>
               </div>
             </div>
           </div>
@@ -191,7 +215,7 @@ export default function HomePage() {
               <div className='flex items-center space-x-2 mb-6'>
                 <TrendingUp className='w-5 h-5 text-blue-600' />
                 <h2 className='text-2xl font-bold text-gray-900 dark:text-white'>
-                  실시간 주요 환율 - USD/KRW, EUR/KRW, JPY/KRW
+                  실시간 주요 환율 정보
                 </h2>
                 <span className='text-sm text-gray-500 dark:text-gray-400'>
                   매시간 업데이트
@@ -218,13 +242,11 @@ export default function HomePage() {
                 <div className='flex items-center space-x-2 mb-6'>
                   <Calculator className='w-5 h-5 text-green-600' />
                   <h3 className='text-2xl font-bold text-gray-900 dark:text-white'>
-                    환전 계산기
+                    계산기 도구
                   </h3>
                 </div>
 
-                <Suspense fallback={<ConverterSkeleton />}>
-                  <CurrencyConverterSection />
-                </Suspense>
+                <CalculatorSection />
               </div>
 
               {/* Sidebar Ad */}
@@ -249,10 +271,10 @@ export default function HomePage() {
           <div className='mt-16 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-2xl p-8'>
             <div className='text-center mb-12'>
               <h3 className='text-3xl font-bold text-gray-900 dark:text-white mb-4'>
-                왜 우리 환율 서비스일까요?
+                왜 DataHalo인가요?
               </h3>
               <p className='text-lg text-gray-600 dark:text-gray-400'>
-                한국인을 위해 특별히 설계된 환율 서비스
+                복잡함을 단순하게, 계산을 쉽게
               </p>
             </div>
 
@@ -262,15 +284,15 @@ export default function HomePage() {
                   <Zap className='w-8 h-8 text-white' />
                 </div>
                 <h4 className='text-xl font-bold text-gray-900 dark:text-white mb-3'>
-                  실시간 업데이트
+                  실시간 데이터
                 </h4>
                 <p className='text-gray-600 dark:text-gray-400 leading-relaxed'>
-                  매시간 자동으로 업데이트되는
+                  항상 최신 정보로
                   <br />
-                  정확한 환율 정보를 제공합니다
+                  정확한 결과를 제공합니다
                 </p>
                 <div className='mt-4 text-sm text-blue-600 dark:text-blue-400 font-medium'>
-                  ⚡ 1시간마다 업데이트
+                  ⚡ 실시간 업데이트
                 </div>
               </div>
 
@@ -279,15 +301,15 @@ export default function HomePage() {
                   <Calculator className='w-8 h-8 text-white' />
                 </div>
                 <h4 className='text-xl font-bold text-gray-900 dark:text-white mb-3'>
-                  쉬운 계산기
+                  직관적 인터페이스
                 </h4>
                 <p className='text-gray-600 dark:text-gray-400 leading-relaxed'>
-                  토스처럼 직관적이고 빠른
+                  누구나 쉽게 사용할 수 있는
                   <br />
-                  환전 계산기로 간편하게
+                  스마트한 도구로 간편하게
                 </p>
                 <div className='mt-4 text-sm text-green-600 dark:text-green-400 font-medium'>
-                  💡 복사 기능까지
+                  💡 원클릭 복사
                 </div>
               </div>
 
@@ -296,14 +318,15 @@ export default function HomePage() {
                   <Heart className='w-8 h-8 text-white' />
                 </div>
                 <h4 className='text-xl font-bold text-gray-900 dark:text-white mb-3'>
-                  한국인 맞춤
+                  무제한 이용
                 </h4>
                 <p className='text-gray-600 dark:text-gray-400 leading-relaxed'>
-                  해외쇼핑, 여행, 송금 등<br />
-                  한국인이 자주 쓰는 환율 위주
+                  언제든지 자유롭게
+                  <br />
+                  모든 기능을 완전 무료로
                 </p>
                 <div className='mt-4 text-sm text-purple-600 dark:text-purple-400 font-medium'>
-                  🇰🇷 한국인 우선
+                  💜 평생 무료
                 </div>
               </div>
             </div>
@@ -311,24 +334,24 @@ export default function HomePage() {
             {/* 사용 사례 */}
             <div className='mt-12 bg-gray-50 dark:bg-gray-700 rounded-2xl p-6'>
               <h4 className='text-lg font-bold text-gray-900 dark:text-white mb-4 text-center'>
-                이런 때 유용해요
+                다양한 용도로 활용하세요
               </h4>
               <div className='grid grid-cols-1 md:grid-cols-4 gap-4 text-sm'>
                 <div className='flex items-center space-x-2 text-gray-600 dark:text-gray-400'>
-                  <span>🛒</span>
-                  <span>해외 온라인쇼핑</span>
+                  <span>💼</span>
+                  <span>업무 및 학습</span>
                 </div>
                 <div className='flex items-center space-x-2 text-gray-600 dark:text-gray-400'>
-                  <span>✈️</span>
-                  <span>해외여행 준비</span>
+                  <span>🏠</span>
+                  <span>일상 생활</span>
                 </div>
                 <div className='flex items-center space-x-2 text-gray-600 dark:text-gray-400'>
-                  <span>💸</span>
-                  <span>해외송금</span>
+                  <span>📱</span>
+                  <span>모바일 작업</span>
                 </div>
                 <div className='flex items-center space-x-2 text-gray-600 dark:text-gray-400'>
-                  <span>📊</span>
-                  <span>투자 포트폴리오</span>
+                  <span>🚀</span>
+                  <span>프로젝트 지원</span>
                 </div>
               </div>
             </div>

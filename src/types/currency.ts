@@ -40,6 +40,7 @@ export interface AdBannerProps {
   format?: 'auto' | 'rectangle' | 'horizontal' | 'vertical';
   responsive?: boolean;
   className?: string;
+  style?: React.CSSProperties;
 }
 
 // Currency code type based on major currencies

@@ -12,7 +12,7 @@ import {
 } from '@/utils';
 import { Clock, TrendingDown, TrendingUp, Zap } from 'lucide-react';
 
-export default function CurrencyCard({
+export function CurrencyCard({
   fromCurrency,
   toCurrency,
   rate,
