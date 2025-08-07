@@ -5,6 +5,7 @@ import { Calculator, DollarSign, Menu, X } from 'lucide-react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useState } from 'react';
+import { LogoIcon } from './logo-icon';
 
 export function Navigation() {
   const pathname = usePathname();
@@ -31,9 +32,7 @@ export function Navigation() {
         <div className='flex items-center justify-between h-16'>
           {/* Logo */}
           <Link href='/' className='flex items-center gap-2'>
-            <div className='w-8 h-8 bg-gradient-to-r from-blue-500 to-purple-500 rounded-lg flex items-center justify-center'>
-              <span className='text-white font-bold text-sm'>DH</span>
-            </div>
+            <LogoIcon />
             <span className='text-xl font-bold text-gray-900 dark:text-white'>
               DataHalo
             </span>

@@ -1,0 +1,19 @@
+<svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Blue background with rounded corners -->
+  <rect width="32" height="32" rx="6" fill="#2563eb"/>
+  
+  <!-- Calculator grid pattern -->
+  <g transform="translate(12, 12)">
+    <!-- Top-left dot -->
+    <rect x="0" y="0" width="3" height="3" rx="0.75" fill="white"/>
+    <!-- Top-right dot -->
+    <rect x="5" y="0" width="3" height="3" rx="0.75" fill="white" opacity="0.7"/>
+    <!-- Bottom-left dot -->
+    <rect x="0" y="5" width="3" height="3" rx="0.75" fill="white" opacity="0.7"/>
+    <!-- Bottom-right dot -->
+    <rect x="5" y="5" width="3" height="3" rx="0.75" fill="white"/>
+  </g>
+  
+  <!-- Small accent dot -->
+  <circle cx="25" cy="25" r="1.5" fill="white"/>
+</svg>

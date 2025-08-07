@@ -42,7 +42,7 @@ async function DollarRateContent() {
   return (
     <div className='space-y-8'>
       {/* 달러환율 하이라이트 */}
-      <div className='bg-gradient-to-r from-blue-50 to-blue-100 dark:from-blue-900/20 dark:to-blue-800/20 rounded-2xl p-8'>
+      <div className='bg-blue-50 dark:bg-blue-900/20 rounded-2xl p-8'>
         <div className='text-center'>
           <h2 className='text-3xl font-bold text-gray-900 dark:text-white mb-4'>
             오늘 달러환율 (USD/KRW)
@@ -126,18 +126,19 @@ export default function DollarRatePage() {
               홈
             </Link>
             <span>/</span>
-            <span className='text-gray-900 dark:text-white'>달러환율</span>
+            <span className='text-gray-900 dark:text-white'>환율계산기</span>
           </div>
         </nav>
 
         {/* 페이지 헤더 */}
         <div className='text-center mb-12'>
           <h1 className='text-4xl font-bold text-gray-900 dark:text-white mb-4'>
-            달러환율 실시간 시세 USD/KRW
+            <span className='text-blue-600'>환율 계산기</span>
           </h1>
           <p className='text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto'>
-            실시간 달러환율 정보와 정확한 환전계산기로 해외직구, 여행환전,
-            송금을 더 스마트하게
+            복잡한 환율계산, 간단하게.
+            <br />
+            실시간 환율 정보로 정확한 변환을 즉시 제공합니다.
           </p>
         </div>
 

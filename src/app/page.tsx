@@ -4,13 +4,13 @@
 
 import { AdBanner } from '@/components/ad-banner';
 import { CurrencyCard } from '@/components/currency-card';
+import { LogoIcon } from '@/components/logo-icon';
 import { StructuredData } from '@/components/structured-data';
 import { ADSENSE_CONFIG, POPULAR_CURRENCY_PAIRS } from '@/constants';
 import { currencyApi } from '@/services';
 import {
   ArrowRight,
   Calculator,
-  DollarSign,
   Heart,
   Star,
   TrendingUp,
@@ -85,9 +85,7 @@ function CalculatorSection() {
         className='group block bg-white dark:bg-gray-800/50 rounded-2xl border border-gray-100 dark:border-gray-700/50 p-5 hover:bg-gray-50 dark:hover:bg-gray-700/30 transition-all duration-200 hover:scale-[1.02] hover:shadow-sm'
       >
         <div className='flex items-center gap-4'>
-          <div className='w-10 h-10 bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl flex items-center justify-center shadow-sm'>
-            <DollarSign className='w-5 h-5 text-white' />
-          </div>
+          <LogoIcon size='lg' className='rounded-xl' />
           <div className='flex-1'>
             <div className='flex items-center justify-between'>
               <h3 className='text-base font-semibold text-gray-900 dark:text-white'>
@@ -108,7 +106,7 @@ function CalculatorSection() {
         className='group block bg-white dark:bg-gray-800/50 rounded-2xl border border-gray-100 dark:border-gray-700/50 p-5 hover:bg-gray-50 dark:hover:bg-gray-700/30 transition-all duration-200 hover:scale-[1.02] hover:shadow-sm'
       >
         <div className='flex items-center gap-4'>
-          <div className='w-10 h-10 bg-gradient-to-br from-purple-500 to-purple-600 rounded-xl flex items-center justify-center shadow-sm'>
+          <div className='w-10 h-10 bg-purple-600 rounded-xl flex items-center justify-center'>
             <Calculator className='w-5 h-5 text-white' />
           </div>
           <div className='flex-1'>

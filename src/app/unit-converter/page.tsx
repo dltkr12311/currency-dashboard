@@ -20,22 +20,17 @@ export default function UnitConverterPage() {
   return (
     <>
       <StructuredData />
-      <div className='min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900'>
+      <div className='min-h-screen bg-gray-50 dark:bg-gray-900'>
         <div className='container mx-auto px-4 py-8'>
           {/* Hero Section */}
           <div className='text-center mb-8'>
-            <div className='inline-flex items-center gap-2 bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 px-4 py-2 rounded-full text-sm font-medium mb-4'>
-              <span>🔄</span>
-              단위 변환
-            </div>
             <h1 className='text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4'>
-              <span className='bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent'>
-                단위 변환기
-              </span>
+              <span className='text-blue-600'>단위 변환기</span>
             </h1>
             <p className='text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto'>
-              길이, 무게, 온도, 부피, 시간 등<br />
-              모든 단위를 쉽고 정확하게 변환하세요
+              복잡한 단위변환, 간단하게.
+              <br />
+              필요한 모든 단위를 즉시 변환하는 도구입니다.
             </p>
           </div>
 
